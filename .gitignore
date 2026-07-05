@@ -1,0 +1,33 @@
+# R environment
+.Rproj.user/
+.Rhistory
+.RData
+.Renv/
+
+# Model objects (large binary files)
+*.rds
+*.RDS
+
+# Data files (raw patient data, not distributed)
+data/*.csv
+data/*.xlsx
+data/*.xls
+!data/README.md
+
+# Output figures and tables
+output/
+*.pdf
+*.png
+*.jpeg
+*.tiff
+
+# Shiny deployment secrets
+rsconnect/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*~
