@@ -14,7 +14,11 @@ data/*.xlsx
 data/*.xls
 !data/README.md
 
-# Output figures and tables
+# Generated outputs from the analysis pipeline
+results/
+figures/
+models/
+balanced_scheme/
 output/
 *.pdf
 *.png

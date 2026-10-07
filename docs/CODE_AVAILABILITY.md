@@ -2,46 +2,50 @@
 
 The code used for model training, validation, and visualization in this study is publicly available in the following repository:
 
-> **GitHub**: [https://github.com/ywqin829/TB-Pneumonia-ML-Diagnosis-Triage](https://github.com/ywqin829/TB-Pneumonia-ML-Diagnosis-Triage)
+> **GitHub**: [https://github.com/ywqin829/TB-Pneumonia-ML-triage](https://github.com/ywqin829/TB-Pneumonia-ML-triage)
+
+The repository is archived on Zenodo:
+
+> **Zenodo**: [https://doi.org/10.5281/zenodo.21151461](https://doi.org/10.5281/zenodo.21151461)
 
 ## Contents
 
-| Directory / File | Description |
+| File | Description |
 |---|---|
-| `R/01_data_prep.R` | Data loading, cleaning, calculation of derived indices, and Table 1 generation |
-| `R/02_exploratory_figures.R` | Exploratory visualizations: age pyramid, gender distribution, radar plot, correlation heatmap (Figure 2) |
-| `R/03_feature_selection.R` | Boruta, LASSO regression, and univariate AUC screening (Figures 2E, 3A, 3B) |
-| `R/04_model_benchmarking.R` | 9-model comparison with 5-fold CV and exhaustive feature combination search (Figure 3C) |
-| `R/05_final_model.R` | Final XGBoost training with 10-fold CV, ROC curves, and confusion matrix (Figures 3D, 3E) |
-| `R/06_calibration_dca.R` | Calibration curve and decision curve analysis (Figures 4A, 4B) |
-| `R/07_shap_analysis.R` | SHAP beeswarm summary plot and individual force plots (Figures 5A, 5B) |
-| `R/08_shiny_app.R` | Interactive Shiny dashboard for clinical decision support |
-| `data/` | Directory for raw data (not publicly distributed due to privacy restrictions) |
-| `output/` | Directory for generated figures and tables |
+| `R/00_prepare.R` | Source audit, derivable index reconstruction, and frozen diagnosis-stratified 60/20/20 split (seed 123) |
+| `R/01_model_pipeline.R` | Boruta and LASSO feature engineering, direction-aware AUC screening, exhaustive feature-combination search, and nine-algorithm benchmarking with all learned steps inside training folds |
+| `R/02_evaluate.R` | Locked validation-derived thresholds and one-pass test-set evaluation |
+| `R/03_supplement.R` | Supplemental descriptive, stability, demographic, and reproducibility outputs |
+| `R/04_figures.R` | Scientific figures rebuilt from the locked outputs (exported per panel) |
+| `R/05_integrity_check.R` | Independent, read-only audit of saved revision outputs |
+| `R/05_smoke_check.R` | Delivery smoke check of saved predictions, unit conversion, and the Shiny server |
+| `R/06_balanced_evaluation.R` | Author-selected balanced operating strategy (disclosed post-result adjustment) |
+| `R/app.R` | Interactive Shiny research dashboard |
+| `R/app_predict.R` | Prediction utilities for the dashboard |
+| `data/` | Directory for source data (not distributed due to privacy restrictions) |
 
 ## Dependencies
 
-All analyses were conducted in **R 4.x** with the following key packages:
+All analyses were conducted in **R 4.5.1** with the following key packages:
 
-- `caret`, `xgboost` — model training and cross-validation
-- `pROC` — ROC curve analysis
-- `glmnet` — LASSO regression
+- `rsample`, `caret`, `recipes`, `themis` — data partitioning, model training, and cross-validation
+- `xgboost`, `ranger`, `glmnet`, `gbm`, `nnet`, `rpart`, `kernlab` — candidate algorithms
 - `Boruta` — feature selection
-- `shapviz` — SHAP explainability
-- `dcurves` — decision curve analysis
-- `shiny`, `bslib`, `echarts4r` — interactive dashboard
+- `pROC` — ROC curve analysis and threshold selection
+- `ggplot2` — figure generation
+- `shiny` — interactive dashboard
 
 ## Usage
 
-1. Place the raw dataset in the `data/` directory.
-2. Source scripts sequentially from `01_data_prep.R` through `07_shap_analysis.R`.
-3. The Shiny app (`08_shiny_app.R`) requires the pre-trained model file `tb_pneumonia_model_V2.rds`.
+1. Place the source dataset as `TB_Pneumonia.csv` in the working directory (contact the corresponding author for access).
+2. Run the scripts in order from `00_prepare.R` through `06_balanced_evaluation.R`.
+3. The dashboard (`app.R`) requires the saved `results/` and `models/` outputs produced by the pipeline.
 
 ## Interactive Web App
 
-A live version of the diagnostic dashboard is available at:
+A live version of the research decision-support prototype is available at:
 
-> [https://0pwfel-0-0.shinyapps.io/TB_AI_App/](https://0pwfel-0-0.shinyapps.io/TB_AI_App/)
+> [https://nana2379723224.shinyapps.io/tb-pneumonia-research/](https://nana2379723224.shinyapps.io/tb-pneumonia-research/)
 
 ## License
 
