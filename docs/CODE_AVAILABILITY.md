@@ -4,9 +4,9 @@ The code used for model training, validation, and visualization in this study is
 
 > **GitHub**: [https://github.com/ywqin829/TB-Pneumonia-ML-triage](https://github.com/ywqin829/TB-Pneumonia-ML-triage)
 
-The repository is archived on Zenodo:
+The repository is archived on Zenodo (concept DOI, always resolves to the latest version):
 
-> **Zenodo**: [https://doi.org/10.5281/zenodo.21151461](https://doi.org/10.5281/zenodo.21151461)
+> **Zenodo**: [https://doi.org/10.5281/zenodo.21151460](https://doi.org/10.5281/zenodo.21151460)
 
 ## Contents
 
